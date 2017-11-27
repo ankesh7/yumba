@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 
-let scrape = async () => {
+let scrape = async function() {
     const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
 
