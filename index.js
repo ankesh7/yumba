@@ -1,27 +1,21 @@
-const puppeteer = require('puppeteer');
-
-let scrape = async () => {
-    const browser = await puppeteer.launch({headless: false});
-    const page = await browser.newPage();
-
-    await page.goto('https://yumba.ca/#/on-the-menu');
-
-    const result = await page.evaluate(() => {
-        let data = []; // Create an empty array that will store our data
-        let elements = document.querySelectorAll('#entreeMeals .meal-name span'); // Select all Products
-
-        for (var element of elements){ // Loop through each proudct
-            let name = element.innerText;
-            data.push(name); // Push an object with the data onto our array
-        }
-
-        return data; // Return our data array
-    });
-
-    browser.close();
-    return result; // Return the data
-};
-
-scrape().then((value) => {
-    console.log(value); // Success!
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const urlencodedParser = bodyParser.urlencoded({
+  extended: false
 });
+const scrape = require('./app/scrape');
+
+
+app.get('/', (req, res) => {
+    scrape().then((value) => {
+        res.send({
+            data:value
+        });
+    });
+ 
+})
+
+app.listen(5000, () => console.log('Example app listening on port 5000!'))
+
+
