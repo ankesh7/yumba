@@ -9,7 +9,7 @@ const urlencodedParser = bodyParser.urlencoded({
 const scrape = require('./scrape');
 
 
-app.get('/', function(req, res) {
+app.get('/menu', function(req, res) {
     scrape().then((value) => {
         res.send({
             data:value
