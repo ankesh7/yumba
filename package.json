@@ -5,8 +5,15 @@
   "repository": "git@github.com:ankesh7/yumba.git",
   "author": "Ankesh Mistry <ankesh@crowdlinker.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "babel server -d lib"
+  },
   "dependencies": {
     "express": "^4.16.2",
-    "puppeteer": "^0.13.0"
+    "puppeteer": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
   }
 }
